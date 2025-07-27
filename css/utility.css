@@ -1,0 +1,66 @@
+:root {
+    --bg-black: black;
+    --bg-white: white;
+    --text-base: #b3b3b3;
+    --bg-base: #121212;
+    --bg-grey: #1f1f1f;
+    --bg-hover: #2a2a2a;
+    --bg-hover2: #f0f0f0;
+    --bg-hover3: #2f2f2f;
+}
+
+.flex {
+    display: flex;
+}
+
+.position {
+    position: relative;
+}
+
+.justify-content {
+    justify-content: center;
+}
+
+.align-items {
+    align-items: center;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.invert {
+    filter: invert(1)
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    /* invisible or subtle */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(128, 128, 128, 0.45);
+    /* semi-transparent grey */
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(160, 160, 160, 0.6);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(128, 128, 128, 0.45) transparent;
+}
