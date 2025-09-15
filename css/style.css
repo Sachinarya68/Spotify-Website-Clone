@@ -521,10 +521,12 @@ main {
 
 .playbar {
     display: flex;
+    flex-direction: column;
     position: absolute;
     justify-content: center;
     align-items: center;
-    padding: 5px;
+    padding: 7px;
+    gap: 7px;
     height: 15%;
     width: 100%;
     background-color: var(--bg-base);
@@ -547,6 +549,25 @@ main {
 
 .timeline {
     display: flex;
+    position: relative;
+    height: 1px;
+    width: 80%;
+    border: 2px solid #6e6e6eaa;
+    border-radius: 50px;
+    box-sizing: border-box;
+}
+
+.circle{
+    display: flex;
+    position: relative;
+    height: 10px;
+    width: 10px;
+    /* transform: translate(-2px,-5px); */
+    left: -5px;
+    bottom: 5px;
+    border-radius: 50px;
+    background-color: var(--bg-white);
+    transition: left 0.5s;
 }
 
 /* FOOTER */
