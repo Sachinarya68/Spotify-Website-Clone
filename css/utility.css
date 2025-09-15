@@ -9,6 +9,15 @@
     --bg-hover3: #2f2f2f;
 }
 
+.imgdim{
+    height: 155px;
+    width: 155px;
+}
+
+.hide {
+    visibility: hidden;
+}
+
 .flex {
     display: flex;
 }

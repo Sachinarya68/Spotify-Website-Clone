@@ -520,8 +520,9 @@ main {
 }
 
 .playbar {
+    /* visibility: hidden; */
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     position: absolute;
     justify-content: center;
     align-items: center;
@@ -533,13 +534,60 @@ main {
     bottom: 0;
 }
 
-.songinfo {
-    display: flex;
-}
-
-.playbuttons {
+.playposter {
+    visibility: hidden;
     display: flex;
     position: relative;
+    align-items: center;
+    padding: 7px;
+    box-sizing: border-box;
+}
+
+.playposter img {
+    border-radius: 5px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 25px 0 0;
+    gap: 7px;
+    box-sizing: border-box;
+}
+
+.controls .songcontrol {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.songcontrol .songinfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.songinfo .songname2 {
+    visibility: hidden;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--bg-white);
+}
+
+.songinfo .songmovie {
+    visibility: hidden;
+    font-size: 12px;
+}
+
+.songcontrol .playbuttons {
+    display: flex;
+    position: absolute;
+    transform: translate(280px, -8px);
     justify-content: center;
     align-items: center;
     color: var(--bg-white);
@@ -552,14 +600,21 @@ main {
     width: 36px;
 }
 
-.timeline {
+.songcontrol .songtime {
+    /* visibility: hidden; */
+    font-size: 16px;
+    color: var(--bg-white);
+}
+
+.controls .timecontrol {
     display: flex;
     position: relative;
     height: 1px;
-    width: 80%;
+    width: 50%;
     border: 2px solid #6e6e6eaa;
     border-radius: 50px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .circle {
@@ -567,10 +622,11 @@ main {
     position: relative;
     height: 10px;
     width: 10px;
-    /* transform: translate(-2px,-5px); */
-    left: -5px;
+    transform: translateX(-5px);
+    left: 0px;
     bottom: 5px;
     border-radius: 50px;
+    box-sizing: border-box;
     background-color: var(--bg-white);
     transition: left 0.5s;
 }
