@@ -1,5 +1,7 @@
 console.log('Welcome to my Own Spotify!');
 
+let currentSong = new Audio();
+
 async function getSongs() {
     let a = await fetch("http://10.22.32.124:3000/assets/songs/")
     let response = await a.text()
@@ -18,9 +20,11 @@ async function getSongs() {
     return songs
 }
 
+//Play the song
 const playMusic = (track) => {
-    let audio = new Audio(track);
-    audio.play();
+    currentSong.src = track
+    currentSong.play()
+    play.src = "assets/img/pausesong.svg"
 }
 
 async function main() {
@@ -28,7 +32,7 @@ async function main() {
     let songs = await getSongs()
     // console.log(songs);
 
-    //Show songs
+    //Showing all songs
     let songsUL = document.querySelector(".saved").getElementsByTagName("ul")[0]
     for (const song of songs) {
         songsUL.innerHTML = songsUL.innerHTML + `<li>
@@ -46,15 +50,26 @@ async function main() {
                         </li>`;
     }
 
-    let currentSong;
-
+    //Event listening click for songs to play 
     Array.from(document.querySelector(".saved").getElementsByTagName("li")).forEach(e => {
-        e.addEventListener("click", element => {
-            console.log("/assets/songs/" + (e.querySelector(".songinfo").firstElementChild.innerHTML + "- " + e.querySelector(".songinfo").lastElementChild.innerHTML.trim()).replaceAll(" ", "%20") + " 320 Kbps.mp3".replaceAll(" ", "%20"));
+        e.querySelector(".playbuttonsvg").addEventListener("click", element => {
+            console.log(e.querySelector(".songinfo").firstElementChild.innerHTML + "- " + e.querySelector(".songinfo").lastElementChild.innerHTML.trim());
 
             playMusic("/assets/songs/" + (e.querySelector(".songinfo").firstElementChild.innerHTML + "- " + e.querySelector(".songinfo").lastElementChild.innerHTML.trim()).replaceAll(" ", "%20") + " 320 Kbps.mp3".replaceAll(" ", "%20"));
         })
     });
+
+    //Event listener for play
+    play.addEventListener("click", () => {
+        if (currentSong.paused) {
+            currentSong.play()
+            play.src = "assets/img/pausesong.svg"
+        }
+        else {
+            currentSong.pause()
+            play.src = "assets/img/playsong.svg"
+        }
+    })
 }
 
 main()

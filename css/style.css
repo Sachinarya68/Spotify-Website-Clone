@@ -311,34 +311,34 @@ main {
 }
 
 .saved ul li img {
-    cursor: pointer;
     height: 24px;
     width: 24px;
 }
 
-.saved ul li .musicsvg{
+.saved ul li .musicsvg {
     display: flex;
     gap: 10px;
 }
 
-.saved ul li .playbuttonsvg{
+.saved ul li .playbuttonsvg {
+    cursor: pointer;
     display: flex;
     justify-self: flex-end;
 }
 
-.saved .songinfo{
+.saved .songinfo {
     display: flex;
     /* transform: translate(-105px); */
     flex-direction: column;
 }
 
-.saved .songinfo .songname{
+.saved .songinfo .songname {
     font-size: 15px;
     font-weight: 500;
     color: var(--bg-white);
 }
 
-.saved .songinfo .songartist{
+.saved .songinfo .songartist {
     font-size: 11px;
     color: var(--bg-white);
 }
@@ -547,6 +547,11 @@ main {
     gap: 10px;
 }
 
+#play {
+    height: 36px;
+    width: 36px;
+}
+
 .timeline {
     display: flex;
     position: relative;
@@ -557,7 +562,7 @@ main {
     box-sizing: border-box;
 }
 
-.circle{
+.circle {
     display: flex;
     position: relative;
     height: 10px;
