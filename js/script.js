@@ -16,7 +16,6 @@ function secondsToMinutesSeconds(seconds) {
     return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-
 async function getSongs() {
     let a = await fetch("http://10.22.32.124:3000/assets/songs/")
     let response = await a.text()
@@ -50,23 +49,11 @@ const playMusic = (track) => {
     document.querySelector(".playposter").style.visibility = 'visible';
     document.querySelector(".songname2").style.visibility = 'visible';
     document.querySelector(".songmovie").style.visibility = 'visible';
-
-
-    // let playposter = document.querySelector
-    // let songname = `${track.split("-")[0].replaceAll("%20", " ")}`;
-    // document.querySelector(".songname2").innerHTML = `songname`;
-
-    // let songartist = `${track.split("-")[1].replaceAll("%20", " ")}`;
-    // document.querySelector(".songartist2").innerHTML = `songartist`
-
-    // document.querySelector(".songinfo").style.visibility = 'visible';
-    // let songtime = `00:00`;
 }
 
 async function main() {
     //Get songs list
     let songs = await getSongs()
-    // console.log(songs);
 
     //Showing all songs
     let songsUL = document.querySelector(".saved").getElementsByTagName("ul")[0]
@@ -85,6 +72,23 @@ async function main() {
                             </div>
                         </li>`;
     }
+
+    //Event for listening click on posters to play songs
+    let playlogos = document.querySelectorAll(".playlogo")
+
+    playlogos.forEach(playlogo => {
+        playlogo.addEventListener("click", () => {
+            // Navigate to the parent card
+            let cards = playlogo.closest(".cards");
+
+            let songTitle = cards.querySelector(".title a").innerHTML.trim();
+            console.log(songTitle);
+
+            console.log((songTitle.split("(From")[0] + "- " + songTitle.split("(From ")[1].split('"')[1] + " 320 Kbps.mp3").replaceAll(" ", "%20"))
+            playMusic((songTitle.split("(From")[0] + "- " + songTitle.split("(From ")[1].split('"')[1] + " 320 Kbps.mp3").replaceAll(" ", "%20"))
+        });
+    });
+
 
     //Event listening click for songs to play 
     Array.from(document.querySelector(".saved").getElementsByTagName("li")).forEach(e => {
@@ -109,17 +113,23 @@ async function main() {
 
     //Timeupdate event listener
     currentSong.addEventListener("timeupdate", () => {
-        console.log(currentSong.currentTime, currentSong.duration);
-
         document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentSong.currentTime)} / ${secondsToMinutesSeconds(currentSong.duration)}`
 
-        document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
+        let percent = (currentSong.currentTime / currentSong.duration) * 100;
+        document.querySelector(".circle").style.left = percent + "%";
+        document.querySelector(".progress").style.width = percent + "%";
     })
 
     //Seekbar event listener
     document.querySelector(".timecontrol").addEventListener("click", e => {
-        let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100
+        // let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+
+        const rect = e.currentTarget.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const percent = (offsetX / rect.width) * 100;
+
         document.querySelector(".circle").style.left = percent + "%";
+        document.querySelector(".progress").style.width = percent + "%";
         currentSong.currentTime = (currentSong.duration * percent) / 100;
     })
 }

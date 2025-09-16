@@ -461,6 +461,7 @@ main {
     flex-direction: column;
     gap: 5px;
     flex-shrink: 0;
+    justify-content: flex-start;
 }
 
 .content .songs .cards:hover {
@@ -484,7 +485,7 @@ main {
 
 .content .songs .cards:hover .playlogo {
     opacity: 1;
-    top: 120px;
+    top: 110px;
 }
 
 .content .songs .cards .title {
@@ -587,7 +588,7 @@ main {
 .songcontrol .playbuttons {
     display: flex;
     position: absolute;
-    transform: translate(280px, -8px);
+    transform: translate(295px, -8px);
     justify-content: center;
     align-items: center;
     color: var(--bg-white);
@@ -595,10 +596,19 @@ main {
     gap: 10px;
 }
 
+#prev:hover {
+    filter: brightness(0) invert(1);
+}
+
 #play {
     height: 36px;
     width: 36px;
 }
+
+#next:hover {
+    filter: brightness(0) invert(1);
+}
+
 
 .songcontrol .songtime {
     /* visibility: hidden; */
@@ -612,8 +622,25 @@ main {
     height: 1px;
     width: 50%;
     border: 2px solid #6e6e6eaa;
+    /* border: 3px solid white; */
     border-radius: 50px;
     box-sizing: border-box;
+    cursor: pointer;
+}
+
+.progress {
+    display: flex;
+    position: absolute;
+    transform: translateX(-2px);
+    left: 0px;
+    top: -2px;
+    height: 1px;
+    width: 0%;
+    /* background: white; */
+    border: 2px solid var(--bg-white);
+    border-radius: 50px;
+    box-sizing: border-box;
+    transition: width 0.5s;
     cursor: pointer;
 }
 
@@ -623,7 +650,7 @@ main {
     height: 10px;
     width: 10px;
     transform: translateX(-5px);
-    left: 0px;
+    left: 0%;
     bottom: 5px;
     border-radius: 50px;
     box-sizing: border-box;
